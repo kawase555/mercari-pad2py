@@ -1,0 +1,43 @@
+2026-04-03 15:05:27 | INFO     | 実行開始
+2026-04-03 15:05:27 | INFO     | 実行時刻(ローカル): 2026-04-03 15:05:27
+2026-04-03 15:05:27 | INFO     | 設定ファイル: C:\Users\bs00b\Desktop\実験\メルカリ受注\config.json
+2026-04-03 15:05:27 | INFO     | ログファイル: C:\Users\bs00b\Desktop\実験\メルカリ受注\log\mercari_orders20260403150527.log
+2026-04-03 15:05:27 | INFO     | モード: live
+2026-04-03 15:05:27 | INFO     | 本番モード: 実行時刻から自動計算
+2026-04-03 15:05:27 | INFO     | API endpoint: https://api.mercari-shops.com/v1/graphql
+2026-04-03 15:05:27 | INFO     | time_window_minutes: 10
+2026-04-03 15:05:27 | INFO     | fday(UTC): 2026-04-03T05:55:27Z
+2026-04-03 15:05:27 | INFO     | sday(UTC): 2026-04-03T06:05:27Z
+2026-04-03 15:05:27 | DEBUG    | GraphQL query (page 1):
+query {
+  orders(
+    first: 100
+    orderedDateGte: "2026-04-03T05:55:27Z"
+    orderedDateLt: "2026-04-03T06:05:27Z"
+  ) {
+    edges {
+      node {
+        id
+        createdAt
+        status
+        products {
+          variant {
+            janCode
+          }
+        }
+      }
+    }
+    pageInfo {
+      endCursor
+      hasNextPage
+    }
+  }
+}
+2026-04-03 15:05:27 | DEBUG    | Starting new HTTPS connection (1): api.mercari-shops.com:443
+2026-04-03 15:05:27 | DEBUG    | https://api.mercari-shops.com:443 "POST /v1/graphql HTTP/1.1" 200 None
+2026-04-03 15:05:27 | INFO     | HTTP status: 200 (page 1)
+2026-04-03 15:05:27 | INFO     | page 1 取得件数: 0件 (累計: 0件)
+2026-04-03 15:05:27 | INFO     | 合計取得件数: 0件
+2026-04-03 15:05:27 | INFO     | 生データ保存先: C:\Users\bs00b\Desktop\実験\mercari_orders_raw_20260403_150527.json
+2026-04-03 15:05:27 | INFO     | 取得件数0件のためwebhookへのPOSTはスキップします
+2026-04-03 15:05:27 | INFO     | 実行成功

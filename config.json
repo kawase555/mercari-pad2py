@@ -1,0 +1,18 @@
+{
+  "api_endpoint": "https://api.mercari-shops.com/v1/graphql",
+  "bearer_token": "msp_fZthotnnmNAC74oDxmTds4_ggjXYuwqur8mFAgmUjJugXU49u9dzo5DPvMR4CzGSEb6",
+  "user_agent": "LINK/1.0.0",
+  "query_first": 100,
+  "time_window_minutes": 10,
+  "_comment_mode": "本番運用時は mode を live に変更すること。test=固定日時, live=実行時刻から自動計算",
+  "mode": "live",
+  "test_fday": "2026-04-01T06:40:48Z",
+  "test_sday": "2026-04-01T06:50:47Z",
+  "webhook_url": "https://default73f2bc4dd1d748b884c7199289e991.aa.environment.api.powerplatform.com:443/powerautomate/automations/direct/workflows/95cf04c263e14957a6d8875449fb5dc7/triggers/manual/paths/invoke?api-version=1&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=BduyXFGZFONkwPPCp-wFMBI4oGc7srHXI882DMSSARw",
+  "shop_id": "16",
+  "shop_url_id": "myR5dGzWRbT6WSVWG7ToQX",
+  "output_dir": "C:\\Users\\bs00b\\Desktop\\実験",
+  "log_dir": "C:\\Users\\bs00b\\Desktop\\実験\\メルカリ受注\\log",
+  "log_file_prefix": "mercari_orders",
+  "output_file_prefix": "mercari_orders_raw"
+}
