@@ -5,14 +5,33 @@
   "query_first": 100,
   "time_window_minutes": 10,
   "_comment_mode": "本番運用時は mode を live に変更すること。test=固定日時, live=実行時刻から自動計算",
-  "mode": "live",
-  "test_fday": "2026-04-06T09:04:00",
-  "test_sday": "2026-04-06T09:14:00",
+  "mode": "test",
+  "test_fday": "2026-04-05T22:50:00",
+  "test_sday": "2026-04-05T22:55:00",
   "webhook_url": "https://default73f2bc4dd1d748b884c7199289e991.aa.environment.api.powerplatform.com:443/powerautomate/automations/direct/workflows/95cf04c263e14957a6d8875449fb5dc7/triggers/manual/paths/invoke?api-version=1&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=BduyXFGZFONkwPPCp-wFMBI4oGc7srHXI882DMSSARw",
   "shop_id": "16",
   "shop_url_id": "myR5dGzWRbT6WSVWG7ToQX",
   "output_dir": "C:\\Users\\bs00b\\Desktop\\実験",
   "log_dir": "C:\\Users\\bs00b\\Desktop\\実験\\メルカリ受注\\log",
   "log_file_prefix": "mercari_orders",
-  "output_file_prefix": "mercari_orders_raw"
+  "output_file_prefix": "mercari_orders_raw",
+  "_comment_kintone": "kintone_env を dev にすると疑似環境、prod にすると本番環境に登録する",
+  "kintone_env": "dev",
+  "kintone_dev": {
+    "domain": "https://q0hpqcpormys.cybozu.com",
+    "app_id": 5,
+    "api_token": "1OULgjQ1UPUTOky8cMqkiB6mW70lLeiJlNPLVYxQ"
+  },
+  "kintone_prod": {
+    "domain": "https://reinc.cybozu.com",
+    "app_id": 299,
+    "api_token": "GfQhlGGE36dsueNujgEREwlOECBoE1L0cUMHrIZZ"
+  },
+  "kintone_item": {
+    "domain": "https://reinc.cybozu.com",
+    "app_id": 210,
+    "api_token": "uaHRJozCPwAU5N2hgQcz0LMpbYm4sFzgzu497C49"
+  },
+  "chatwork_token": "1f2e5d52799e81ca0eec7bda80c5946c",
+  "chatwork_room_id": "256924955"
 }
