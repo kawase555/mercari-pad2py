@@ -80,8 +80,9 @@ log.info(f"ログファイル: {log_path}")
 log.info(f"モード: {MODE}")
 
 if MODE == "test":
-    fday_str = TEST_FDAY
-    sday_str = TEST_SDAY
+    JST = timezone(timedelta(hours=9))
+    fday_str = datetime.strptime(TEST_FDAY, "%Y-%m-%dT%H:%M:%S").replace(tzinfo=JST).astimezone(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
+    sday_str = datetime.strptime(TEST_SDAY, "%Y-%m-%dT%H:%M:%S").replace(tzinfo=JST).astimezone(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
     log.info("テストモード: 固定日時を使用")
 elif MODE == "live":
     sday_utc = datetime.now(timezone.utc)
