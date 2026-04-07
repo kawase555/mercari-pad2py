@@ -1,0 +1,1822 @@
+{
+  "data": {
+    "__schema": {
+      "types": [
+        {
+          "fields": null,
+          "name": "AddOrderTransactionMessageInput"
+        },
+        {
+          "fields": [
+            {
+              "name": "orderTransaction"
+            }
+          ],
+          "name": "AddOrderTransactionMessagePayload"
+        },
+        {
+          "fields": null,
+          "name": "AddProductVariantsInput"
+        },
+        {
+          "fields": [
+            {
+              "name": "product"
+            }
+          ],
+          "name": "AddProductVariantsPayload"
+        },
+        {
+          "fields": null,
+          "name": "AddTransactionMessageInput"
+        },
+        {
+          "fields": [
+            {
+              "name": "order"
+            }
+          ],
+          "name": "AddTransactionMessagePayload"
+        },
+        {
+          "fields": [
+            {
+              "name": "contentSize"
+            },
+            {
+              "name": "contentType"
+            },
+            {
+              "name": "id"
+            },
+            {
+              "name": "imageURL"
+            }
+          ],
+          "name": "Asset"
+        },
+        {
+          "fields": null,
+          "name": "AssetImageOptions"
+        },
+        {
+          "fields": [
+            {
+              "name": "feedItems"
+            },
+            {
+              "name": "feedPrintType"
+            },
+            {
+              "name": "id"
+            },
+            {
+              "name": "shopId"
+            }
+          ],
+          "name": "B2CloudFeed"
+        },
+        {
+          "fields": null,
+          "name": "B2CloudFeedBagHandlingOption"
+        },
+        {
+          "fields": [
+            {
+              "name": "edges"
+            },
+            {
+              "name": "pageInfo"
+            }
+          ],
+          "name": "B2CloudFeedConnection"
+        },
+        {
+          "fields": [
+            {
+              "name": "node"
+            }
+          ],
+          "name": "B2CloudFeedEdge"
+        },
+        {
+          "fields": null,
+          "name": "B2CloudFeedInvoiceType"
+        },
+        {
+          "fields": null,
+          "name": "B2CloudShippingSize"
+        },
+        {
+          "fields": null,
+          "name": "B2CloudShippingStatus"
+        },
+        {
+          "fields": null,
+          "name": "Boolean"
+        },
+        {
+          "fields": null,
+          "name": "BusinessKind"
+        },
+        {
+          "fields": null,
+          "name": "CancelOrderInput"
+        },
+        {
+          "fields": [
+            {
+              "name": "order"
+            }
+          ],
+          "name": "CancelOrderPayload"
+        },
+        {
+          "fields": null,
+          "name": "CancelOrderTransactionInput"
+        },
+        {
+          "fields": [
+            {
+              "name": "orderTransaction"
+            }
+          ],
+          "name": "CancelOrderTransactionPayload"
+        },
+        {
+          "fields": [
+            {
+              "name": "name"
+            },
+            {
+              "name": "type"
+            }
+          ],
+          "name": "CancelReason"
+        },
+        {
+          "fields": null,
+          "name": "CancelReasonType"
+        },
+        {
+          "fields": null,
+          "name": "CompleteOrderInput"
+        },
+        {
+          "fields": [
+            {
+              "name": "order"
+            }
+          ],
+          "name": "CompleteOrderPayload"
+        },
+        {
+          "fields": null,
+          "name": "CompleteOrderShippingInput"
+        },
+        {
+          "fields": [
+            {
+              "name": "orderShippingId"
+            }
+          ],
+          "name": "CompleteOrderShippingPayload"
+        },
+        {
+          "fields": null,
+          "name": "ConfirmPreOrderChargeInput"
+        },
+        {
+          "fields": [
+            {
+              "name": "orderTransaction"
+            }
+          ],
+          "name": "ConfirmPreOrderChargePayload"
+        },
+        {
+          "fields": null,
+          "name": "CreateB2CloudFeedInput"
+        },
+        {
+          "fields": null,
+          "name": "CreateB2CloudFeedItemInput"
+        },
+        {
+          "fields": [
+            {
+              "name": "b2cloudFeedItem"
+            }
+          ],
+          "name": "CreateB2CloudFeedItemPayload"
+        },
+        {
+          "fields": [
+            {
+              "name": "b2cloudFeed"
+            }
+          ],
+          "name": "CreateB2CloudFeedPayload"
+        },
+        {
+          "fields": null,
+          "name": "CreateOrderShippingInput"
+        },
+        {
+          "fields": [
+            {
+              "name": "orderShipping"
+            }
+          ],
+          "name": "CreateOrderShippingPayload"
+        },
+        {
+          "fields": null,
+          "name": "CreateProductInput"
+        },
+        {
+          "fields": [
+            {
+              "name": "product"
+            }
+          ],
+          "name": "CreateProductPayload"
+        },
+        {
+          "fields": null,
+          "name": "CreateWebhookInput"
+        },
+        {
+          "fields": [
+            {
+              "name": "webhook"
+            }
+          ],
+          "name": "CreateWebhookPayload"
+        },
+        {
+          "fields": null,
+          "name": "CreditCardPayMethodType"
+        },
+        {
+          "fields": null,
+          "name": "DateTime"
+        },
+        {
+          "fields": null,
+          "name": "DebugCreateOrderInput"
+        },
+        {
+          "fields": [
+            {
+              "name": "order"
+            }
+          ],
+          "name": "DebugCreateOrderPayload"
+        },
+        {
+          "fields": null,
+          "name": "DecreaseProductVariantStockInput"
+        },
+        {
+          "fields": [
+            {
+              "name": "productVariant"
+            }
+          ],
+          "name": "DecreaseProductVariantStockPayload"
+        },
+        {
+          "fields": null,
+          "name": "DeleteB2CloudFeedInput"
+        },
+        {
+          "fields": [
+            {
+              "name": "b2cloudFeedId"
+            }
+          ],
+          "name": "DeleteB2CloudFeedPayload"
+        },
+        {
+          "fields": null,
+          "name": "DeleteOrderShippingInput"
+        },
+        {
+          "fields": [
+            {
+              "name": "orderShippingId"
+            }
+          ],
+          "name": "DeleteOrderShippingPayload"
+        },
+        {
+          "fields": null,
+          "name": "DeleteProductInput"
+        },
+        {
+          "fields": [
+            {
+              "name": "id"
+            }
+          ],
+          "name": "DeleteProductPayload"
+        },
+        {
+          "fields": null,
+          "name": "DeleteProductVariantInput"
+        },
+        {
+          "fields": [
+            {
+              "name": "id"
+            }
+          ],
+          "name": "DeleteProductVariantPayload"
+        },
+        {
+          "fields": null,
+          "name": "DeleteWebhookInput"
+        },
+        {
+          "fields": [
+            {
+              "name": "id"
+            }
+          ],
+          "name": "DeleteWebhookPayload"
+        },
+        {
+          "fields": null,
+          "name": "DeliveryTiming"
+        },
+        {
+          "fields": null,
+          "name": "ErrorCode"
+        },
+        {
+          "fields": null,
+          "name": "FeedPrintType"
+        },
+        {
+          "fields": null,
+          "name": "GetB2CloudFeedInput"
+        },
+        {
+          "fields": null,
+          "name": "ID"
+        },
+        {
+          "fields": null,
+          "name": "ImageForamt"
+        },
+        {
+          "fields": null,
+          "name": "ImagePreset"
+        },
+        {
+          "fields": null,
+          "name": "IncreaseProductVariantStockInput"
+        },
+        {
+          "fields": [
+            {
+              "name": "productVariant"
+            }
+          ],
+          "name": "IncreaseProductVariantStockPayload"
+        },
+        {
+          "fields": null,
+          "name": "Int"
+        },
+        {
+          "fields": null,
+          "name": "IssueB2CloudInvoiceInput"
+        },
+        {
+          "fields": [
+            {
+              "name": "b2cloudFeed"
+            },
+            {
+              "name": "invoicePdfUrl"
+            }
+          ],
+          "name": "IssueB2CloudInvoicePayload"
+        },
+        {
+          "fields": null,
+          "name": "MallProductCategory"
+        },
+        {
+          "fields": null,
+          "name": "MallType"
+        },
+        {
+          "fields": [
+            {
+              "name": "id"
+            },
+            {
+              "name": "mercaribinForBusinessCoolType"
+            }
+          ],
+          "name": "MercariBinForBusinessSetting"
+        },
+        {
+          "fields": null,
+          "name": "MercariBinForBusinessSettingInput"
+        },
+        {
+          "fields": null,
+          "name": "MercaribinForBusinessCoolType"
+        },
+        {
+          "fields": [
+            {
+              "name": "addOrderTransactionMessage"
+            },
+            {
+              "name": "addProductVariants"
+            },
+            {
+              "name": "cancelOrderTransaction"
+            },
+            {
+              "name": "completeOrderShipping"
+            },
+            {
+              "name": "confirmPreOrderCharge"
+            },
+            {
+              "name": "createB2CloudFeed"
+            },
+            {
+              "name": "createB2CloudFeedItem"
+            },
+            {
+              "name": "createOrderShipping"
+            },
+            {
+              "name": "createProduct"
+            },
+            {
+              "name": "createWebhook"
+            },
+            {
+              "name": "debugCreateOrder"
+            },
+            {
+              "name": "decreaseProductVariantStock"
+            },
+            {
+              "name": "deleteB2CloudFeed"
+            },
+            {
+              "name": "deleteOrderShipping"
+            },
+            {
+              "name": "deleteProduct"
+            },
+            {
+              "name": "deleteProductVariant"
+            },
+            {
+              "name": "deleteWebhook"
+            },
+            {
+              "name": "increaseProductVariantStock"
+            },
+            {
+              "name": "issueB2CloudInvoice"
+            },
+            {
+              "name": "updateB2CloudFeedItem"
+            },
+            {
+              "name": "updateOrderShippingTrackingCode"
+            },
+            {
+              "name": "updateProduct"
+            },
+            {
+              "name": "updateProductVariant"
+            },
+            {
+              "name": "updateProductVariantSKU"
+            },
+            {
+              "name": "updateProductVariants"
+            },
+            {
+              "name": "updateProducts"
+            }
+          ],
+          "name": "Mutation"
+        },
+        {
+          "fields": [
+            {
+              "name": "buyerShippingFee"
+            },
+            {
+              "name": "cancelReasonType"
+            },
+            {
+              "name": "canceledAt"
+            },
+            {
+              "name": "cancellable"
+            },
+            {
+              "name": "completedAt"
+            },
+            {
+              "name": "createdAt"
+            },
+            {
+              "name": "customerInfo"
+            },
+            {
+              "name": "id"
+            },
+            {
+              "name": "messages"
+            },
+            {
+              "name": "orderCoupon"
+            },
+            {
+              "name": "paidAt"
+            },
+            {
+              "name": "paymentDeadline"
+            },
+            {
+              "name": "paymentMethod"
+            },
+            {
+              "name": "products"
+            },
+            {
+              "name": "salesFee"
+            },
+            {
+              "name": "shipping"
+            },
+            {
+              "name": "status"
+            },
+            {
+              "name": "totalPrice"
+            },
+            {
+              "name": "updatedAt"
+            }
+          ],
+          "name": "Order"
+        },
+        {
+          "fields": [
+            {
+              "name": "bagHandlingOption1"
+            },
+            {
+              "name": "bagHandlingOption2"
+            },
+            {
+              "name": "createdAt"
+            },
+            {
+              "name": "id"
+            },
+            {
+              "name": "invoiceType"
+            },
+            {
+              "name": "itemName"
+            },
+            {
+              "name": "orderShippingId"
+            },
+            {
+              "name": "scheduledShipDate"
+            },
+            {
+              "name": "shippingInfo"
+            },
+            {
+              "name": "trackingNumber"
+            },
+            {
+              "name": "updatedAt"
+            }
+          ],
+          "name": "OrderB2CloudFeedItem"
+        },
+        {
+          "fields": [
+            {
+              "name": "buyerAddressId"
+            },
+            {
+              "name": "merbinBizShippingFee"
+            },
+            {
+              "name": "orderFeedItemId"
+            },
+            {
+              "name": "sellerAddressId"
+            },
+            {
+              "name": "shippingSize"
+            },
+            {
+              "name": "shippingStatus"
+            }
+          ],
+          "name": "OrderB2CloudFeedItemShippingInfo"
+        },
+        {
+          "fields": [
+            {
+              "name": "edges"
+            },
+            {
+              "name": "pageInfo"
+            }
+          ],
+          "name": "OrderConnection"
+        },
+        {
+          "fields": [
+            {
+              "name": "couponDisplayId"
+            },
+            {
+              "name": "couponId"
+            },
+            {
+              "name": "discountAmount"
+            }
+          ],
+          "name": "OrderCoupon"
+        },
+        {
+          "fields": [
+            {
+              "name": "node"
+            }
+          ],
+          "name": "OrderEdge"
+        },
+        {
+          "fields": [
+            {
+              "name": "name"
+            },
+            {
+              "name": "price"
+            },
+            {
+              "name": "productAssetId"
+            },
+            {
+              "name": "productId"
+            },
+            {
+              "name": "refurbishType"
+            },
+            {
+              "name": "variant"
+            }
+          ],
+          "name": "OrderProduct"
+        },
+        {
+          "fields": [
+            {
+              "name": "b2CloudFeedItems"
+            },
+            {
+              "name": "completedAt"
+            },
+            {
+              "name": "createdAt"
+            },
+            {
+              "name": "id"
+            },
+            {
+              "name": "products"
+            },
+            {
+              "name": "sellerShippingFee"
+            },
+            {
+              "name": "senderAddress"
+            },
+            {
+              "name": "shippedAt"
+            },
+            {
+              "name": "shippingMethod"
+            },
+            {
+              "name": "status"
+            },
+            {
+              "name": "trackingCode"
+            },
+            {
+              "name": "updatedAt"
+            }
+          ],
+          "name": "OrderShipping"
+        },
+        {
+          "fields": [
+            {
+              "name": "edges"
+            },
+            {
+              "name": "pageInfo"
+            }
+          ],
+          "name": "OrderShippingConnection"
+        },
+        {
+          "fields": [
+            {
+              "name": "node"
+            }
+          ],
+          "name": "OrderShippingEdge"
+        },
+        {
+          "fields": [
+            {
+              "name": "buyerShippingFee"
+            },
+            {
+              "name": "canceledQuantity"
+            },
+            {
+              "name": "productId"
+            },
+            {
+              "name": "quantity"
+            },
+            {
+              "name": "shippedQuantity"
+            },
+            {
+              "name": "shippingQuantity"
+            },
+            {
+              "name": "variant"
+            }
+          ],
+          "name": "OrderShippingProduct"
+        },
+        {
+          "fields": null,
+          "name": "OrderShippingProductInput"
+        },
+        {
+          "fields": null,
+          "name": "OrderShippingStatus"
+        },
+        {
+          "fields": null,
+          "name": "OrderStatus"
+        },
+        {
+          "fields": null,
+          "name": "OrderStatusFilter"
+        },
+        {
+          "fields": [
+            {
+              "name": "cancelable"
+            },
+            {
+              "name": "canceledAt"
+            },
+            {
+              "name": "completedAt"
+            },
+            {
+              "name": "createdAt"
+            },
+            {
+              "name": "id"
+            },
+            {
+              "name": "messages"
+            },
+            {
+              "name": "orderType"
+            },
+            {
+              "name": "paidAt"
+            },
+            {
+              "name": "paymentDeadline"
+            },
+            {
+              "name": "paymentMethod"
+            },
+            {
+              "name": "preOrderStatus"
+            },
+            {
+              "name": "products"
+            },
+            {
+              "name": "salesFee"
+            },
+            {
+              "name": "shippingAddress"
+            },
+            {
+              "name": "status"
+            },
+            {
+              "name": "totalPrice"
+            },
+            {
+              "name": "updatedAt"
+            },
+            {
+              "name": "userInfo"
+            }
+          ],
+          "name": "OrderTransaction"
+        },
+        {
+          "fields": [
+            {
+              "name": "edges"
+            },
+            {
+              "name": "pageInfo"
+            }
+          ],
+          "name": "OrderTransactionConnection"
+        },
+        {
+          "fields": [
+            {
+              "name": "node"
+            }
+          ],
+          "name": "OrderTransactionEdge"
+        },
+        {
+          "fields": [
+            {
+              "name": "buyerShippingFee"
+            },
+            {
+              "name": "coupon"
+            },
+            {
+              "name": "name"
+            },
+            {
+              "name": "productId"
+            },
+            {
+              "name": "purchasedQuantity"
+            },
+            {
+              "name": "refurbishType"
+            },
+            {
+              "name": "shippedCanceledQuantity"
+            },
+            {
+              "name": "shippedCancelingQuantity"
+            },
+            {
+              "name": "shippingCompletedQuantity"
+            },
+            {
+              "name": "shippingCreatedQuantity"
+            },
+            {
+              "name": "shippingInProgressQuantity"
+            },
+            {
+              "name": "shippingMethod"
+            },
+            {
+              "name": "unitPrice"
+            },
+            {
+              "name": "unshippedCanceledQuantity"
+            },
+            {
+              "name": "unshippedCancelingQuantity"
+            },
+            {
+              "name": "unshippedQuantity"
+            },
+            {
+              "name": "variant"
+            }
+          ],
+          "name": "OrderTransactionProduct"
+        },
+        {
+          "fields": [
+            {
+              "name": "canceledCount"
+            },
+            {
+              "name": "couponDisplayId"
+            },
+            {
+              "name": "couponId"
+            },
+            {
+              "name": "discountPrice"
+            },
+            {
+              "name": "reservedCount"
+            },
+            {
+              "name": "usedCount"
+            }
+          ],
+          "name": "OrderTransactionProductCoupon"
+        },
+        {
+          "fields": null,
+          "name": "OrderTransactionStatus"
+        },
+        {
+          "fields": null,
+          "name": "OrderTransactionStatusFilter"
+        },
+        {
+          "fields": null,
+          "name": "OrderType"
+        },
+        {
+          "fields": [
+            {
+              "name": "id"
+            },
+            {
+              "name": "janCode"
+            },
+            {
+              "name": "name"
+            },
+            {
+              "name": "skuCode"
+            }
+          ],
+          "name": "OrderVariant"
+        },
+        {
+          "fields": [
+            {
+              "name": "endCursor"
+            },
+            {
+              "name": "hasNextPage"
+            }
+          ],
+          "name": "PageInfo"
+        },
+        {
+          "fields": null,
+          "name": "PaymentMethod"
+        },
+        {
+          "fields": null,
+          "name": "PaymentMethodBalanceInput"
+        },
+        {
+          "fields": null,
+          "name": "PaymentMethodCreditCardInput"
+        },
+        {
+          "fields": null,
+          "name": "PreOrderStatus"
+        },
+        {
+          "fields": [
+            {
+              "name": "brand"
+            },
+            {
+              "name": "categories"
+            },
+            {
+              "name": "condition"
+            },
+            {
+              "name": "createdAt"
+            },
+            {
+              "name": "description"
+            },
+            {
+              "name": "id"
+            },
+            {
+              "name": "imageUrls"
+            },
+            {
+              "name": "mercaribinForBusinessSetting"
+            },
+            {
+              "name": "mercaribinForBusinessSettingId"
+            },
+            {
+              "name": "name"
+            },
+            {
+              "name": "orderType"
+            },
+            {
+              "name": "price"
+            },
+            {
+              "name": "productPreOrder"
+            },
+            {
+              "name": "refurbishType"
+            },
+            {
+              "name": "shippingConfiguration"
+            },
+            {
+              "name": "shippingDuration"
+            },
+            {
+              "name": "shippingFromState"
+            },
+            {
+              "name": "shippingMethod"
+            },
+            {
+              "name": "shippingPayer"
+            },
+            {
+              "name": "status"
+            },
+            {
+              "name": "updatedAt"
+            },
+            {
+              "name": "variants"
+            }
+          ],
+          "name": "Product"
+        },
+        {
+          "fields": [
+            {
+              "name": "id"
+            },
+            {
+              "name": "name"
+            },
+            {
+              "name": "nameEn"
+            },
+            {
+              "name": "nameKana"
+            }
+          ],
+          "name": "ProductBrand"
+        },
+        {
+          "fields": [
+            {
+              "name": "hasChild"
+            },
+            {
+              "name": "id"
+            },
+            {
+              "name": "name"
+            },
+            {
+              "name": "parentId"
+            }
+          ],
+          "name": "ProductCategory"
+        },
+        {
+          "fields": null,
+          "name": "ProductCondition"
+        },
+        {
+          "fields": [
+            {
+              "name": "name"
+            },
+            {
+              "name": "type"
+            }
+          ],
+          "name": "ProductConditionOption"
+        },
+        {
+          "fields": [
+            {
+              "name": "edges"
+            },
+            {
+              "name": "pageInfo"
+            }
+          ],
+          "name": "ProductConnection"
+        },
+        {
+          "fields": [
+            {
+              "name": "node"
+            }
+          ],
+          "name": "ProductEdge"
+        },
+        {
+          "fields": null,
+          "name": "ProductOrderType"
+        },
+        {
+          "fields": [
+            {
+              "name": "acceptancePeriodFrom"
+            },
+            {
+              "name": "acceptancePeriodTo"
+            },
+            {
+              "name": "cancellationDeadline"
+            },
+            {
+              "name": "deliveryTiming"
+            },
+            {
+              "name": "releaseDate"
+            }
+          ],
+          "name": "ProductPreOrder"
+        },
+        {
+          "fields": null,
+          "name": "ProductPreOrderInput"
+        },
+        {
+          "fields": null,
+          "name": "ProductStatus"
+        },
+        {
+          "fields": [
+            {
+              "name": "name"
+            },
+            {
+              "name": "type"
+            }
+          ],
+          "name": "ProductStatusOption"
+        },
+        {
+          "fields": [
+            {
+              "name": "id"
+            },
+            {
+              "name": "janCode"
+            },
+            {
+              "name": "name"
+            },
+            {
+              "name": "product"
+            },
+            {
+              "name": "skuCode"
+            },
+            {
+              "name": "stockQuantity"
+            }
+          ],
+          "name": "ProductVariant"
+        },
+        {
+          "fields": null,
+          "name": "ProductVariantBy"
+        },
+        {
+          "fields": null,
+          "name": "ProductVariantInput"
+        },
+        {
+          "fields": [
+            {
+              "name": "availableProductConditionOptions"
+            },
+            {
+              "name": "availableProductStatusOptions"
+            },
+            {
+              "name": "availableShippingDurationOptions"
+            },
+            {
+              "name": "availableShippingMethodOptions"
+            },
+            {
+              "name": "availableShippingPayerOptions"
+            },
+            {
+              "name": "b2cloudFeed"
+            },
+            {
+              "name": "cancelReasonTypes"
+            },
+            {
+              "name": "errorCodes"
+            },
+            {
+              "name": "listB2CloudFeeds"
+            },
+            {
+              "name": "mappedProductCategories"
+            },
+            {
+              "name": "orderShippings"
+            },
+            {
+              "name": "orderTransaction"
+            },
+            {
+              "name": "orderTransactions"
+            },
+            {
+              "name": "product"
+            },
+            {
+              "name": "productBrands"
+            },
+            {
+              "name": "productCategories"
+            },
+            {
+              "name": "productShippingConfiguration"
+            },
+            {
+              "name": "productShippingConfigurations"
+            },
+            {
+              "name": "productVariant"
+            },
+            {
+              "name": "products"
+            },
+            {
+              "name": "shop"
+            },
+            {
+              "name": "states"
+            },
+            {
+              "name": "webhook"
+            },
+            {
+              "name": "webhooks"
+            }
+          ],
+          "name": "Query"
+        },
+        {
+          "fields": null,
+          "name": "RefurbishType"
+        },
+        {
+          "fields": [
+            {
+              "name": "id"
+            },
+            {
+              "name": "method"
+            },
+            {
+              "name": "senderAddress"
+            },
+            {
+              "name": "shippingAddress"
+            },
+            {
+              "name": "trackingCode"
+            }
+          ],
+          "name": "Shipping"
+        },
+        {
+          "fields": [
+            {
+              "name": "address1"
+            },
+            {
+              "name": "address2"
+            },
+            {
+              "name": "city"
+            },
+            {
+              "name": "country"
+            },
+            {
+              "name": "firstName"
+            },
+            {
+              "name": "firstNameEN"
+            },
+            {
+              "name": "firstNameKana"
+            },
+            {
+              "name": "lastName"
+            },
+            {
+              "name": "lastNameEN"
+            },
+            {
+              "name": "lastNameKana"
+            },
+            {
+              "name": "phoneNumber"
+            },
+            {
+              "name": "postalCode"
+            },
+            {
+              "name": "state"
+            }
+          ],
+          "name": "ShippingAddress"
+        },
+        {
+          "fields": [
+            {
+              "name": "createdAt"
+            },
+            {
+              "name": "details"
+            },
+            {
+              "name": "displayId"
+            },
+            {
+              "name": "id"
+            },
+            {
+              "name": "title"
+            },
+            {
+              "name": "type"
+            },
+            {
+              "name": "updatedAt"
+            }
+          ],
+          "name": "ShippingConfiguration"
+        },
+        {
+          "fields": [
+            {
+              "name": "edges"
+            },
+            {
+              "name": "pageInfo"
+            }
+          ],
+          "name": "ShippingConfigurationConnection"
+        },
+        {
+          "fields": [
+            {
+              "name": "destination"
+            },
+            {
+              "name": "fee"
+            }
+          ],
+          "name": "ShippingConfigurationDetail"
+        },
+        {
+          "fields": null,
+          "name": "ShippingConfigurationDetailDestination"
+        },
+        {
+          "fields": [
+            {
+              "name": "node"
+            }
+          ],
+          "name": "ShippingConfigurationEdge"
+        },
+        {
+          "fields": null,
+          "name": "ShippingConfigurationType"
+        },
+        {
+          "fields": null,
+          "name": "ShippingDuration"
+        },
+        {
+          "fields": [
+            {
+              "name": "name"
+            },
+            {
+              "name": "type"
+            }
+          ],
+          "name": "ShippingDurationOption"
+        },
+        {
+          "fields": null,
+          "name": "ShippingMethod"
+        },
+        {
+          "fields": [
+            {
+              "name": "name"
+            },
+            {
+              "name": "type"
+            }
+          ],
+          "name": "ShippingMethodOption"
+        },
+        {
+          "fields": null,
+          "name": "ShippingPayer"
+        },
+        {
+          "fields": [
+            {
+              "name": "name"
+            },
+            {
+              "name": "type"
+            }
+          ],
+          "name": "ShippingPayerOption"
+        },
+        {
+          "fields": [
+            {
+              "name": "businessKind"
+            },
+            {
+              "name": "createdAt"
+            },
+            {
+              "name": "description"
+            },
+            {
+              "name": "id"
+            },
+            {
+              "name": "name"
+            }
+          ],
+          "name": "Shop"
+        },
+        {
+          "fields": [
+            {
+              "name": "id"
+            },
+            {
+              "name": "name"
+            }
+          ],
+          "name": "State"
+        },
+        {
+          "fields": null,
+          "name": "String"
+        },
+        {
+          "fields": [
+            {
+              "name": "createdAt"
+            },
+            {
+              "name": "id"
+            },
+            {
+              "name": "message"
+            },
+            {
+              "name": "role"
+            }
+          ],
+          "name": "TransactionMessage"
+        },
+        {
+          "fields": null,
+          "name": "TransactionMessageAuthorRole"
+        },
+        {
+          "fields": null,
+          "name": "UpdateB2CloudFeedItemInput"
+        },
+        {
+          "fields": [
+            {
+              "name": "b2cloudFeedItem"
+            }
+          ],
+          "name": "UpdateB2CloudFeedItemPayload"
+        },
+        {
+          "fields": null,
+          "name": "UpdateOrderShippingTrackingCodeInput"
+        },
+        {
+          "fields": [
+            {
+              "name": "orderShipping"
+            }
+          ],
+          "name": "UpdateOrderShippingTrackingCodePayload"
+        },
+        {
+          "fields": null,
+          "name": "UpdateProductInput"
+        },
+        {
+          "fields": [
+            {
+              "name": "product"
+            }
+          ],
+          "name": "UpdateProductPayload"
+        },
+        {
+          "fields": null,
+          "name": "UpdateProductVariantInput"
+        },
+        {
+          "fields": [
+            {
+              "name": "productVariant"
+            }
+          ],
+          "name": "UpdateProductVariantPayload"
+        },
+        {
+          "fields": null,
+          "name": "UpdateProductVariantSKUInput"
+        },
+        {
+          "fields": [
+            {
+              "name": "productVariant"
+            }
+          ],
+          "name": "UpdateProductVariantSKUPayload"
+        },
+        {
+          "fields": null,
+          "name": "UpdateProductVariantsInput"
+        },
+        {
+          "fields": [
+            {
+              "name": "productVariants"
+            }
+          ],
+          "name": "UpdateProductVariantsPayload"
+        },
+        {
+          "fields": [
+            {
+              "name": "products"
+            }
+          ],
+          "name": "UpdateProductsPayload"
+        },
+        {
+          "fields": null,
+          "name": "UpdateShippingTrackingCodeInput"
+        },
+        {
+          "fields": [
+            {
+              "name": "order"
+            }
+          ],
+          "name": "UpdateShippingTrackingCodePayload"
+        },
+        {
+          "fields": [
+            {
+              "name": "nickname"
+            },
+            {
+              "name": "pictureUrl"
+            }
+          ],
+          "name": "UserInfo"
+        },
+        {
+          "fields": [
+            {
+              "name": "apiVersion"
+            },
+            {
+              "name": "createdAt"
+            },
+            {
+              "name": "endPoint"
+            },
+            {
+              "name": "id"
+            },
+            {
+              "name": "topic"
+            }
+          ],
+          "name": "Webhook"
+        },
+        {
+          "fields": null,
+          "name": "WebhookTopic"
+        },
+        {
+          "fields": [
+            {
+              "name": "name"
+            },
+            {
+              "name": "description"
+            },
+            {
+              "name": "isRepeatable"
+            },
+            {
+              "name": "locations"
+            },
+            {
+              "name": "args"
+            }
+          ],
+          "name": "__Directive"
+        },
+        {
+          "fields": null,
+          "name": "__DirectiveLocation"
+        },
+        {
+          "fields": [
+            {
+              "name": "name"
+            },
+            {
+              "name": "description"
+            },
+            {
+              "name": "isDeprecated"
+            },
+            {
+              "name": "deprecationReason"
+            }
+          ],
+          "name": "__EnumValue"
+        },
+        {
+          "fields": [
+            {
+              "name": "name"
+            },
+            {
+              "name": "description"
+            },
+            {
+              "name": "args"
+            },
+            {
+              "name": "type"
+            },
+            {
+              "name": "isDeprecated"
+            },
+            {
+              "name": "deprecationReason"
+            }
+          ],
+          "name": "__Field"
+        },
+        {
+          "fields": [
+            {
+              "name": "name"
+            },
+            {
+              "name": "description"
+            },
+            {
+              "name": "type"
+            },
+            {
+              "name": "defaultValue"
+            },
+            {
+              "name": "isDeprecated"
+            },
+            {
+              "name": "deprecationReason"
+            }
+          ],
+          "name": "__InputValue"
+        },
+        {
+          "fields": [
+            {
+              "name": "description"
+            },
+            {
+              "name": "types"
+            },
+            {
+              "name": "queryType"
+            },
+            {
+              "name": "mutationType"
+            },
+            {
+              "name": "subscriptionType"
+            },
+            {
+              "name": "directives"
+            }
+          ],
+          "name": "__Schema"
+        },
+        {
+          "fields": [
+            {
+              "name": "kind"
+            },
+            {
+              "name": "name"
+            },
+            {
+              "name": "description"
+            },
+            {
+              "name": "specifiedByURL"
+            },
+            {
+              "name": "fields"
+            },
+            {
+              "name": "interfaces"
+            },
+            {
+              "name": "possibleTypes"
+            },
+            {
+              "name": "enumValues"
+            },
+            {
+              "name": "inputFields"
+            },
+            {
+              "name": "ofType"
+            },
+            {
+              "name": "isOneOf"
+            }
+          ],
+          "name": "__Type"
+        },
+        {
+          "fields": null,
+          "name": "__TypeKind"
+        }
+      ]
+    }
+  },
+  "extensions": {
+    "inquiry": {
+      "id": "16296096047592262807"
+    }
+  }
+}
