@@ -1,12 +1,5 @@
 # mercari-pad2py
-メルカリShopsの受注データを GraphQL API から取得し、商品単位に展開して下流 webhook へ連携する Python スクリプトです。 
-
-既存の PAD（Power Automate Desktop）処理を置き換えることを目的とした、1回実行型バッチとして実装しています。 
-
-想定運用は Windows タスクスケジューラから定期起動 です。
-
-コードコメント上でも「PAD完全置き換えスクリプト（1回実行型）」「タスクスケジューラで5分おきに起動して使う」と明示されています。
-
+メルカリShopsの受注データを GraphQL API から取得し、商品単位に展開して下流 webhook へ連携する Python スクリプトです。 既存の PAD（Power Automate Desktop）処理を置き換えることを目的とした、1回実行型バッチとして実装しています。 想定運用は Windows タスクスケジューラから定期起動 です。コードコメント上でも「PAD完全置き換えスクリプト（1回実行型）」「タスクスケジューラで5分おきに起動して使う」と明示されています。
 
 ## 概要
 このスクリプトは、指定時間帯のメルカリShops注文を取得し、注文内の商品ごとに 1 件ずつ webhook へ POST します。処理の大きな流れは以下のとおりです。
@@ -120,18 +113,48 @@
 
 ### image_link / image_link2 のURL生成ロジック
 
-JANコードから以下のルールでS3 URLを直接生成する。
+**これは社内ハウスルール。S3側のドキュメントには記載がないため、この記述が唯一の仕様書となる。**
+
+#### S3パス構造
 
 ```
-本撮影: https://bazz-eccube.s3.ap-northeast-1.amazonaws.com/save_image/{jan[:2]}/{jan[-2:]}/1/{jan}-1.jpg
-仮撮影: https://bazz-eccube.s3.ap-northeast-1.amazonaws.com/save_image/{jan[:2]}/{jan[-2:]}/7/{jan}-7.jpg
+https://bazz-eccube.s3.ap-northeast-1.amazonaws.com/save_image/{dir1}/{dir2}/{type}/{jan}-{type}.jpg
 ```
 
-例）JAN = 1142258467897 の場合：
+| 変数 | 内容 | 導出方法 |
+|------|------|----------|
+| dir1 | JANの上2桁 | jan[:2] |
+| dir2 | JANの下2桁 | jan[-2:] |
+| type | 撮影区分 | 本撮影=1 / 仮撮影=7 |
+
+#### 撮影区分について
+
+- `/1/` → 本撮影（実際の商品を正式撮影した画像）
+- `/7/` → 仮撮影（入荷時などに仮で撮影した画像）
+
+仮撮影データはさくらクラウドに保存されており、月次で削除される。
+そのため image_link2（仮撮影）は月をまたぐと画像が存在しない場合がある。
+
+#### URLテンプレート
+
 ```
-本撮影: https://bazz-eccube.s3.ap-northeast-1.amazonaws.com/save_image/11/97/1/1142258467897-1.jpg
-仮撮影: https://bazz-eccube.s3.ap-northeast-1.amazonaws.com/save_image/11/97/7/1142258467897-7.jpg
+本撮影(image_link):  https://bazz-eccube.s3.ap-northeast-1.amazonaws.com/save_image/{jan[:2]}/{jan[-2:]}/1/{jan}-1.jpg
+仮撮影(image_link2): https://bazz-eccube.s3.ap-northeast-1.amazonaws.com/save_image/{jan[:2]}/{jan[-2:]}/7/{jan}-7.jpg
 ```
+
+#### 実例3件
+
+| JAN | dir1 | dir2 | 本撮影URL | 仮撮影URL |
+|-----|------|------|-----------|-----------|
+| 1142258467897 | 11 | 97 | .../save_image/11/97/1/1142258467897-1.jpg | .../save_image/11/97/7/1142258467897-7.jpg |
+| 1142286565992 | 11 | 92 | .../save_image/11/92/1/1142286565992-1.jpg | .../save_image/11/92/7/1142286565992-7.jpg |
+| 1136423813183 | 11 | 83 | .../save_image/11/83/1/1136423813183-1.jpg | .../save_image/11/83/7/1136423813183-7.jpg |
+
+※ URLのベース部分（`https://bazz-eccube.s3.ap-northeast-1.amazonaws.com/save_image`）は省略して表記。
+
+#### コード実装箇所
+
+`kintone_register.py` の `build_s3_image_urls(jan)` 関数。
 
 ## リカバリ手順
 
