@@ -23,7 +23,10 @@
 ├─ config.json                        設定外出し（環境切替・APIトークン等）
 ├─ run_mercari.bat                    fetch_mercari_orders_and_save.py の起動用
 ├─ run_retry.bat                      登録失敗時のリカバリ用
-├─ 処理確認テスト手順.txt
+├─ Doc/
+│  ├─ 処理確認テスト手順.txt           手動テスト・運用切り替え手順
+│  ├─ check_schema.py                  メルカリGraphQL APIのスキーマ取得スクリプト
+│  └─ schema.json                      取得済みスキーマ（2026/04/07時点）
 └─ log/
    ├─ mercari_ordersYYYYMMDDHHMMSS.log
    └─ kintone_registerYYYYMMDDHHMMSS.log
@@ -155,6 +158,54 @@ https://bazz-eccube.s3.ap-northeast-1.amazonaws.com/save_image/{dir1}/{dir2}/{ty
 #### コード実装箇所
 
 `kintone_register.py` の `build_s3_image_urls(jan)` 関数。
+
+## 手動テスト手順
+
+通常はタスクスケジューラが5分ごとに自動実行するため何もしなくてよい。
+config.json の mode が `live` になっていることを確認すること。
+
+過去の注文を手動で確認したい場合は以下の手順で行う。
+
+**STEP 1: kintoneで確認したい時刻を調べる**
+```
+https://reinc.cybozu.com/k/299/
+```
+EC店舗カラムで「メルカリShops」の行を探し、左横の日時カラムを確認する。
+例：2026/4/6 9:09:00
+
+**STEP 2: config.json を変更する**
+```json
+"mode": "test",
+"test_fday": "2026-04-06T09:04:00",
+"test_sday": "2026-04-06T09:14:00",
+```
+- 確認したい時刻の前後5分で挟む
+- 日本時間のままでOK（Zなし）
+- test_sday の後ろのカンマを忘れずに
+
+**STEP 3: run_mercari.bat をダブルクリック**
+
+黒い画面が出て処理が走る。「成功: 取得件数=X」と出たらエンターで閉じる。
+
+**STEP 4: output_dir のJSONを確認する**
+```
+C:\Users\bs00b\Desktop\実験\mercari_orders_raw_*.json
+```
+
+**STEP 5: 確認が終わったら config.json を戻す**
+```json
+"mode": "live",
+```
+
+## check_schema.py / schema.json について
+
+`Doc/check_schema.py` はメルカリShops GraphQL APIのスキーマを取得するためだけに作ったスクリプト。
+通常運用では使わない。APIの仕様変更調査や新フィールドの確認が必要になったときに使う。
+
+実行すると `C:\Users\bs00b\Desktop\実験\schema.json` にスキーマが出力される。
+
+`Doc/schema.json` は2026/04/07時点で取得済みのスキーマ。
+2026年8月のOrderTransaction移行対応時にフィールド定義の確認に使うこと。
 
 ## リカバリ手順
 
