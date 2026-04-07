@@ -3,6 +3,7 @@ kintone_register.py
 
 ローカルJSONからkintoneのPickアプリにレコードを登録する。
 - アイテムアプリ(app=210)をJANで検索して商品名・ブランド・価格を取得
+- JANからS3画像URLを直接生成（本撮影 / 仮撮影）
 - unique_idで重複チェック（存在すればスキップ）
 - 登録失敗時はChatWorkに通知＋ログ記録
 - kintone_env を config.json で dev/prod 切替可能
@@ -94,6 +95,9 @@ logger.info("kintone_register 開始")
 logger.info(f"環境: {KINTONE_ENV} / ドメイン: {DOMAIN} / app_id: {APP_ID}")
 logger.info(f"アイテムアプリ: {ITEM_DOMAIN} / app_id: {ITEM_APP_ID}")
 logger.info(f"ログファイル: {log_path}")
+logger.debug(f"設定値: OUTPUT_DIR={OUTPUT_DIR} / LOG_DIR={LOG_DIR}")
+logger.debug(f"設定値: SHOP_ID={SHOP_ID} / SHOP_URL_ID={SHOP_URL_ID}")
+logger.debug(f"設定値: CHATWORK_ROOM_ID={CHATWORK_ROOM_ID}")
 
 
 # ─────────────────────────────────────────────────────────────────────────────
@@ -109,13 +113,36 @@ def notify_chatwork(message: str):
             data={"body": message},
             timeout=10,
         )
-        logger.debug(f"ChatWork通知レスポンス: HTTP={r.status_code}")
+        logger.debug(f"ChatWork通知レスポンス: HTTP={r.status_code} / body={r.text}")
         if r.status_code != 200:
             logger.warning(f"ChatWork通知失敗: {r.status_code} / {r.text}")
         else:
             logger.info("ChatWork通知成功")
     except Exception as e:
         logger.warning(f"ChatWork通知例外: {e}")
+
+
+# ─────────────────────────────────────────────────────────────────────────────
+# JANからS3画像URLを生成
+#   本撮影: .../save_image/{jan[:2]}/{jan[-2:]}/1/{jan}-1.jpg
+#   仮撮影: .../save_image/{jan[:2]}/{jan[-2:]}/7/{jan}-7.jpg
+# ─────────────────────────────────────────────────────────────────────────────
+
+def build_s3_image_urls(jan: str) -> tuple[str, str]:
+    jan = (jan or "").strip()
+    if len(jan) < 2:
+        logger.warning(f"JANが短すぎるため画像URL生成スキップ: jan={jan!r}")
+        return "", ""
+
+    dir1 = jan[:2]
+    dir2 = jan[-2:]
+    base = "https://bazz-eccube.s3.ap-northeast-1.amazonaws.com/save_image"
+
+    image_link  = f"{base}/{dir1}/{dir2}/1/{jan}-1.jpg"
+    image_link2 = f"{base}/{dir1}/{dir2}/7/{jan}-7.jpg"
+
+    logger.debug(f"S3画像URL生成: jan={jan} / image_link={image_link} / image_link2={image_link2}")
+    return image_link, image_link2
 
 
 # ─────────────────────────────────────────────────────────────────────────────
@@ -128,6 +155,7 @@ def fetch_item_by_jan(jan: str) -> dict:
     try:
         r = requests.get(url, headers=GET_ITEM_HEADERS, timeout=15)
         logger.debug(f"アイテム取得レスポンス: jan={jan} / HTTP={r.status_code}")
+        logger.debug(f"アイテム取得レスポンス本文: jan={jan} / body={r.text}")
         if r.status_code != 200:
             logger.warning(f"アイテム取得失敗: jan={jan} / {r.status_code} / {r.text}")
             return {}
@@ -144,6 +172,8 @@ def fetch_item_by_jan(jan: str) -> dict:
         brand_tag = rec.get("brand_tag", {}).get("value", "")
         brand     = rec.get("brand", {}).get("value", "")
         sellprice = rec.get("sellprice_n", {}).get("value", "")
+
+        logger.debug(f"アイテムフィールド取得: lshop={lshop} / itemname={itemname} / c1={c1} / c2={c2} / brand_tag={brand_tag} / brand={brand} / sellprice={sellprice}")
 
         # 商品名を本番と同じフォーマットで結合
         item_name = f"【{lshop}】【】{itemname}{c1} {c2}{brand_tag}"
@@ -166,10 +196,10 @@ def fetch_item_by_jan(jan: str) -> dict:
 
 def exists_in_kintone(unique_id: str) -> bool:
     url = f"{KINTONE_RECORDS_URL}?app={APP_ID}&query=unique_id%20%3D%20%22{unique_id}%22"
-    logger.debug(f"重複チェックリクエスト: unique_id={unique_id}")
+    logger.debug(f"重複チェックリクエスト: unique_id={unique_id} / url={url}")
     try:
         r = requests.get(url, headers=GET_KINTONE_HEADERS, timeout=15)
-        logger.debug(f"重複チェックレスポンス: HTTP={r.status_code}")
+        logger.debug(f"重複チェックレスポンス: HTTP={r.status_code} / body={r.text}")
         if r.status_code != 200:
             logger.warning(f"重複チェック失敗: {r.status_code} / {r.text}")
             return False
@@ -229,6 +259,8 @@ def build_record_from_edge(edge: dict) -> list:
     created_at = node.get("createdAt", "")
     products   = node.get("products", [])
 
+    logger.debug(f"edge処理開始: order_id={order_id} / created_at={created_at} / 商品数={len(products)}")
+
     # createdAt(UTC)をJSTに変換してkintone DATETIME形式へ
     pick_date = ""
     if created_at:
@@ -239,17 +271,22 @@ def build_record_from_edge(edge: dict) -> list:
                 dt_utc = datetime.strptime(created_at, "%Y-%m-%dT%H:%M:%SZ").replace(tzinfo=timezone.utc)
             except ValueError:
                 dt_utc = None
+                logger.warning(f"createdAt変換失敗: {created_at}")
         if dt_utc:
             dt_jst = dt_utc.astimezone(timezone(timedelta(hours=9)))
             pick_date = f"{dt_jst.year}/{dt_jst.month}/{dt_jst.day} {dt_jst.strftime('%H:%M:%S')}"
             logger.debug(f"createdAt変換: {created_at} → {pick_date}")
 
     records = []
-    for product in products:
-        jan = product.get("variant", {}).get("janCode", "")
+    for prod_idx, product in enumerate(products):
+        jan       = product.get("variant", {}).get("janCode", "")
         unique_id = f"order_{order_id}_{jan}"
 
-        logger.debug(f"レコード組み立て開始: order_id={order_id} / jan={jan} / unique_id={unique_id}")
+        logger.debug(f"レコード組み立て開始[{prod_idx+1}/{len(products)}]: order_id={order_id} / jan={jan} / unique_id={unique_id}")
+
+        # JANからS3画像URLを生成
+        image_link, image_link2 = build_s3_image_urls(jan)
+        logger.debug(f"image_link={image_link} / image_link2={image_link2}")
 
         item_info = fetch_item_by_jan(jan)
 
@@ -261,8 +298,8 @@ def build_record_from_edge(edge: dict) -> list:
             "online_link":  f"https://ec.bazzstore.com/products/{jan}",
             "ec_shopcode":  SHOP_ID,
             "mall":         "メルカリShops",
-            "image_link":   "",
-            "image_link2":  "",
+            "image_link":   image_link,
+            "image_link2":  image_link2,
             "item_name":    item_info.get("item_name", ""),
             "brand":        item_info.get("brand", ""),
             "number_order": item_info.get("number_order", ""),
@@ -281,8 +318,8 @@ def build_record_from_edge(edge: dict) -> list:
 def get_latest_json() -> str | None:
     pattern = os.path.join(OUTPUT_DIR, "mercari_orders_raw_*.json")
     files = glob.glob(pattern)
+    logger.debug(f"JSONファイル検索パターン: {pattern} / 該当数={len(files)}")
     if not files:
-        logger.debug(f"JSONファイル検索パターン: {pattern} / 該当なし")
         return None
     latest = max(files, key=os.path.getmtime)
     logger.debug(f"最新JSONファイル: {latest}")
@@ -297,6 +334,8 @@ def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--file", type=str, default=None, help="処理対象のJSONファイルパス（省略時は最新ファイル）")
     args = parser.parse_args()
+
+    logger.debug(f"引数: --file={args.file}")
 
     if args.file:
         target_file = args.file
@@ -332,8 +371,9 @@ def main():
     fail = 0
     failed_unique_ids = []
 
-    for record in all_records:
+    for rec_idx, record in enumerate(all_records):
         unique_id = record.get("unique_id", "")
+        logger.debug(f"登録処理[{rec_idx+1}/{len(all_records)}]: unique_id={unique_id}")
 
         if exists_in_kintone(unique_id):
             logger.info(f"スキップ（既存）: unique_id={unique_id}")
